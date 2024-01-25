@@ -10,7 +10,7 @@ const IS_ACTIVE = "is--active";
 const toggleNavigation = () => {
 	navigation.classList.toggle(IS_ACTIVE);
 	blurOverlay.classList.toggle(IS_ACTIVE);
-	fullpageEl.classList.toggle("no-scroll");
+	//fullpageEl.classList.toggle("no-scroll");
 };
 
 const CLICK = "click";
@@ -56,4 +56,28 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 });
+
+//scroll smoth
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+
+
+document.querySelectorAll('.nav__link').forEach(link => {
+    link.addEventListener('click', function() {
+        // Cerrar el menú de navegación
+        document.querySelector('.navigation').classList.remove('is--active');
+        
+        // Remover el efecto borroso
+        document.querySelector('.blur__overlay').style.display = 'none';
+    });
+});
+
+
 
